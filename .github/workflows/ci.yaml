@@ -28,6 +28,7 @@ jobs:
         with:
           docker_version: ${{ matrix.docker_version }}
           docker_channel: ${{ matrix.docker_channel }}
+      - run: docker version
   docker-default:
     runs-on: ubuntun-latest
     steps:
@@ -37,6 +38,7 @@ jobs:
       - name: Without version
         uses: ./
         # uses: docker-practice/actions-setup-docker@master
+      - run: docker version
   docker-nightly:
     runs-on: ubuntun-latest
     steps:
@@ -49,3 +51,4 @@ jobs:
         with:
           docker_version: 0.0.0.0
           docker_channel: nightly
+      - run: docker version
