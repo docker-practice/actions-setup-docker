@@ -29,6 +29,7 @@ jobs:
           docker_version: ${{ matrix.docker_version }}
           docker_channel: ${{ matrix.docker_channel }}
       - run: |
+          set -x
           docker version
           cat /etc/docker/daemon.json
           docker buildx version || true
@@ -52,6 +53,7 @@ jobs:
         if: github.event_name == 'push'
       # test docker login
       - run: |
+          set -x
           docker pull alpine:latest
           docker tag alpine:latest khs1994/alpine:latest
           docker push khs1994/alpine:latest
