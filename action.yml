@@ -26,7 +26,7 @@ inputs:
     description: /etc/docker/daemon.json
     default: |
       {
-        "experimental":true
+        "experimental": true
       }
 runs:
   using: 'node12'
