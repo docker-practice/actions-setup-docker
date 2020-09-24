@@ -8,6 +8,7 @@ jobs:
   docker:
     name: Docker
     strategy:
+      fail-fast: false
       matrix:
         docker_version:
           - 18.09
@@ -68,6 +69,7 @@ jobs:
         if: github.event_name == 'push'
   docker-nightly:
     strategy:
+        fail-fast: false
         matrix:
           os:
           - ubuntu-16.04
@@ -89,6 +91,7 @@ jobs:
 
   notsupport-platform:
     strategy:
+      fail-fast: false
       matrix:
         os:
          - windows-latest
