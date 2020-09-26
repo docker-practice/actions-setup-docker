@@ -67,10 +67,11 @@ jobs:
       # you must login docker first, then install docker
       # Login docker hub or other docker registry
       # test docker login
-      - uses: docker/login-action@v1
+      # - uses: docker/login-action@v1
+      - uses: docker-practice/login-action@master
         if: |
           github.event_name == 'push'
-          && startsWith( matrix.os, 'ubuntu')
+          && runner.os != 'Windows'
         with:
           # registry: contoso.azurecr.io
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -79,16 +80,16 @@ jobs:
         uses: ./
         # uses: docker-practice/actions-setup-docker@master
       - run: docker version
-      - name: docker login on macOS
-        run: |
-          echo ${docker_password} | docker login -u ${docker_username} --password-stdin ${docker_registry:-}
-        if: |
-          github.event_name == 'push'
-          && startsWith( matrix.os , 'macos' )
-        env:
-          # docker_registry: contoso.azurecr.io
-          docker_username: ${{ secrets.DOCKER_USERNAME }}
-          docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      # - name: docker login on macOS
+      #   run: |
+      #     echo ${docker_password} | docker login -u ${docker_username} --password-stdin ${docker_registry:-}
+      #   if: |
+      #     github.event_name == 'push'
+      #     && runner.os == 'macOS'
+      #   env:
+      #     # docker_registry: contoso.azurecr.io
+      #     docker_username: ${{ secrets.DOCKER_USERNAME }}
+      #     docker_password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker Image
         run: |
           set -x
