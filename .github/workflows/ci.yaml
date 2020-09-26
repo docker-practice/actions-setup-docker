@@ -46,7 +46,8 @@ jobs:
         run: |
           set -x
           docker version
-          cat /etc/docker/daemon.json
+          cat /etc/docker/daemon.json || true
+          cat /Users/runner/.docker/daemon.json || true
           docker buildx version || true
           docker buildx ls || true
 
