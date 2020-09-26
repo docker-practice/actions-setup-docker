@@ -81,7 +81,7 @@ jobs:
           github.event_name == 'push'
           && startsWith( ${{ matrix.os }}, 'macos' )
         env:
-          docker_registry: contoso.azurecr.io
+          # docker_registry: contoso.azurecr.io
           docker_username: ${{ secrets.DOCKER_USERNAME }}
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker Image
