@@ -24,12 +24,13 @@ jobs:
           - ubuntu-20.04
           - ubuntu-latest
         include:
+          # macOS
           - os: macos-latest
             docker_channel: stable
             docker_version: 19.03
-          # - os: macos-latest
-          #   docker_channel: edge
-          #   docker_version: 19.03
+          - os: macos-latest
+            docker_channel: edge
+            docker_version: 19.03
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@main
