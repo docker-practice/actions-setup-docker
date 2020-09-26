@@ -27,6 +27,9 @@ jobs:
           - os: macos-latest
             docker_channel: stable
             docker_version: 19.03
+          # - os: macos-latest
+          #   docker_channel: edge
+          #   docker_version: 19.03
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@main
@@ -65,7 +68,7 @@ jobs:
       - uses: docker/login-action@v1
         if: |
           github.event_name == 'push'
-          && startsWith( ${{ matrix.os }}, 'ubuntu' )
+          && startsWith( matrix.os, 'ubuntu')
         with:
           # registry: contoso.azurecr.io
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -79,7 +82,7 @@ jobs:
           echo ${docker_password} | docker login -u ${docker_username} --password-stdin ${docker_registry:-}
         if: |
           github.event_name == 'push'
-          && startsWith( ${{ matrix.os }}, 'macos' )
+          && startsWith( matrix.os , 'macos' )
         env:
           # docker_registry: contoso.azurecr.io
           docker_username: ${{ secrets.DOCKER_USERNAME }}
