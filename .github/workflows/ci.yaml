@@ -102,7 +102,7 @@ jobs:
           docker buildx build \
             -t khs1994/alpine:${tag} \
             ${push} \
-            --platform linux/arm64,linux/amd64
+            --platform linux/arm64,linux/amd64 \
             .
         env:
           os: ${{ matrix.os }}
