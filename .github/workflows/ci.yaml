@@ -96,7 +96,9 @@ jobs:
           fi
 
           echo 'FROM --platform=${TARGETPLATFORM} alpine' > Dockerfile
-          echo 'RUN set -x ; apk add --no-cache curl' > Dockerfile
+          echo 'RUN set -x ; apk add --no-cache curl' >> Dockerfile
+
+          ls -la ${DOCKER_CONFIG}
 
           tag=${version:-19.03}-${channel:-stable}-${os}
           docker buildx build \
