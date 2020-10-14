@@ -17,7 +17,7 @@ jobs:
         docker_version:
           - 18.09
           - 19.03
-          - 20.10
+          - "20.10"
         docker_channel:
           - stable
           - test
