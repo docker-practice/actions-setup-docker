@@ -52,6 +52,10 @@ jobs:
         with:
           docker_version: ${{ matrix.docker_version }}
           docker_channel: ${{ matrix.docker_channel }}
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@master
+        if: ${{ failure() }}
+        timeout-minutes: 60
       - name: Test
         run: |
           # set -x
@@ -80,6 +84,10 @@ jobs:
       - name: setup docker(default)
         uses: ./
         # uses: docker-practice/actions-setup-docker@master
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@master
+        if: ${{ failure() }}
+        timeout-minutes: 60
       - run: docker version
       # Login docker hub or other docker registry
       # test docker login
