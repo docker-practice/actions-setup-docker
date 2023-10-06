@@ -10,6 +10,6 @@ name: Test
 jobs:
   docker:
     name: Docker
-    runs-on: macos-13-xlarge
+    runs-on: macos-13
     steps:
       - uses: mxschmitt/action-tmate@master
